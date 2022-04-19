@@ -1,4 +1,14 @@
 <div class="card-body">
-  <p class="card-title">{{ video.title }}</p>
-  <p class="card-text">{{ video.description }}</p>
+  <p class="card-title">Title: {{ video.title }}</p>
+  <p class="card-text">Description: {{ video.description }}</p>
+  <p class="card-text">Average Rating: {{ video.averageRating }}</p>
+  <p class="card-text">Reviews:</p>
+  <ul *ngFor="let review of video.reviews">
+    <li>
+      Rating: {{review.rating}}
+    </li>
+    <li>
+      Review: {{review.review}}
+    </li>
+  </ul>
 </div>

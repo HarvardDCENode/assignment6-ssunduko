@@ -1,57 +1,46 @@
 import { Injectable } from '@angular/core';
 
+/**
+ * VideoService containing three hardcoded videos
+ */
 @Injectable()
 export class VideoService {
-  maxId:number = 3;
+
+  //Hardcoded Video List
   videoList = [
     {
       _id: 1,
       title:'First Video',
-      description:'this is my first video',
+      description:'This is my first video',
+      averageRating: 3,
+      reviews: [ {rating: 3, review: 'This is my first review'}]
+
     },
     {
       _id: 2,
       title:'Second Video',
-      description:'this is my second video',
+      description:'This is my second video',
+      averageRating: 4,
+      reviews: [ {rating: 4, review: 'This is my second review'}]
     },
     {
       _id: 3,
       title:'Third Video',
-      description:'this is my third video',
+      description:'This is my third video',
+      averageRating: 5,
+      reviews: [ {rating: 5, review: 'This is my third review'}]
     }
   ];
 
+  /**
+   * Default Constructor
+   */
   constructor() { }
 
+  /**
+   * Method for getting Video List
+   */
   listVideos():any[]{
     return this.videoList;
-  }
-
-  getVideo(id:number):any{
-    return this.videoList.find((el) => {return el._id == id});
-  }
-  createVideo(videoObject:any){
-    if (!videoObject._id){
-      videoObject._id = ++this.maxId;
-    }
-    this.videoList.push(videoObject);
-    return this.videoList[videoObject._id];
-  }
-
-  updateVideo(id:number, data:any){
-    let video = this.getVideo(id);
-    if (video){
-      video = Object.assign(video, data);
-      return video;
-    } else {
-      return null;
-    }
-  }
-
-  deleteVideo(id:number){
-    let video = this.getVideo(id);
-    if (video){
-      this.videoList = this.videoList.filter(el => el._id != id);
-    }
   }
 }
